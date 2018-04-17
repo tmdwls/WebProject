@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
   , database: 'test'
 });
 
-var server = http.createServer(app).listen(800);
+var server = http.createServer(app).listen(8081);
 connection.connect();
 console.log("hello nodejs");
 
@@ -48,7 +48,7 @@ app.get('/getAuthcode1or2', function (req, res) {
 })
 
 app.get('/getNameFromBoard', function (req, res) {
-  connection.query('select name from member where id in (select id from board);',
+  connection.query('select name from member where id in (select id from board)',
     function (err, rows, fields) {
       if(err) throw err;
       res.send(rows)
